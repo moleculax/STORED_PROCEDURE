@@ -4,7 +4,7 @@ BEGIN
 	DECLARE vpMAIL VARCHAR(254);
 	DECLARE vRETORNO INT(1);
     DECLARE EXPREMATCH VARCHAR(254);
-	--
+	-- @moleculax
 	SET vpMAIL=pMAIL;
     -- Ale 17/08/2018 SET EXPREMATCH = '^[^0-9.-][a-zA-Z0-9_.-]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$';
     SET EXPREMATCH = '[a-zA-Z0-9_.-]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$';
