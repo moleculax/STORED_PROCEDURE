@@ -1,1 +1,1 @@
-#Ejemplos basicos de stored en MySQL
+::Ejemplos basicos de stored en MySQL::
