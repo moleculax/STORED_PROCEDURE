@@ -2,8 +2,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `VerificaPasswordUsuario`(
     IN nombre_usuario VARCHAR(100),
     IN host_usuario VARCHAR(100)
 )
-
-
 BEGIN
     DECLARE estado VARCHAR(20);
 
