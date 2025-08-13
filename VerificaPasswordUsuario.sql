@@ -7,7 +7,7 @@ BEGIN
     SELECT 
         CASE
             WHEN authentication_string IS NULL OR authentication_string = '' THEN 'No tiene contraseña'
-            ELSE 'Tiene contraseña'
+            ELSE 'Tiene la contraseña'
         END INTO estado
     FROM mysql.user
     WHERE User = nombre_usuario AND Host = host_usuario;
