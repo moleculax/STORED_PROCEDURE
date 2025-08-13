@@ -11,7 +11,7 @@ BEGIN
     SET discriminante = b*b - 4*a*c;
 
     IF a = 0 THEN
-        SELECT 'No es una ecuación de segundo grado (a = 0)' AS Resultado;
+        SELECT 'No es una ecuación de segundo grado: (a = 0)' AS Resultado;
     ELSEIF discriminante > 0 THEN
         SET x1 = (-b + SQRT(discriminante)) / (2*a);
         SET x2 = (-b - SQRT(discriminante)) / (2*a);
