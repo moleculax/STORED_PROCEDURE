@@ -11,13 +11,14 @@ CREATE DEFINER=`admin`@`localhost` PROCEDURE `SP_INSERTAR_USERS_PROFILE`(
                                         IN p_instagram VARCHAR(200),
                                         IN p_linkedin VARCHAR(200),
                                         IN p_facebook VARCHAR(200),
-                                        IN p_twitter VARCHAR(200)
+                                        IN p_twitter VARCHAR(200) 
 									)
 BEGIN
 	DECLARE EXIT HANDLER FOR sqlexception
     BEGIN 
 	--  CAPTURA CUALQUIER ERROR SQL
 		ROLLBACK;
+		
         SET @MENSAJE = "OCURRIO UN ERROR SE DESHISO LA TRANSACCION";
 	END;
     
