@@ -11,16 +11,15 @@ CREATE DEFINER=`admin`@`localhost` PROCEDURE `SP_INSERTAR_USERS_PROFILE`(
                                         IN p_instagram VARCHAR(200),
                                         IN p_linkedin VARCHAR(200),
                                         IN p_facebook VARCHAR(200),
-                                        IN p_twitter VARCHAR(200) 
+                                        IN p_twitter VARCHAR(200)
 									)
 BEGIN
 	DECLARE EXIT HANDLER FOR sqlexception
     BEGIN 
 	--  CAPTURA CUALQUIER ERROR SQL
 		ROLLBACK;
-		
         SET @MENSAJE = "OCURRIO UN ERROR SE DESHISO LA TRANSACCION";
-		
+        SELECT @MENSAJE;
 	END;
     
     START TRANSACTION;
@@ -63,6 +62,32 @@ BEGIN
                         , p_facebook
                         , p_twitter
                         );
+        -- Ejemplos de valores roles:            
+		-- 'admin', 'user', 'moderator'    
+        -- Ejemplos de valores en permission:
+		-- "VIEW_OWN_CONTENT"
+		-- "EDIT_PROFILE"
+		-- "ADMIN_PANEL"
+        -- Aqui hago un artificio (No es lo correcto)
+        
+        SET @permission = 'VIEW_OWN_CONTENT';
+        
+		SET @permission = 'VIEW_OWN_CONTENT';
+
+		IF p_roles = 'admin' THEN
+			SET @permission = 'ADMIN_PANEL';
+		ELSEIF p_roles = 'user' THEN  
+			SET @permission = 'EDIT_PROFILE';
+		ELSE
+			SET @permission = 'VIEW_OWN_CONTENT';
+		END IF;
+
+        
+			INSERT INTO user_permissions(user_id
+										, permission
+										)
+                                        VALUES(@user_id
+											, @permission);
                         
 	COMMIT;
 END
