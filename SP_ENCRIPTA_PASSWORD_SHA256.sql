@@ -1,10 +1,8 @@
 CREATE DEFINER=`admin`@`localhost` PROCEDURE `SP_ENCRIPTA_PASSWORD_SHA256`(
-    IN password_original VARCHAR(255),
-    OUT password_encriptado VARCHAR(255)
-
+    IN p_password_original VARCHAR(255),
+    OUT p_password_encriptado VARCHAR(64)  -- SHA-256 devuelve 64 caracteres hexadecimales
 )
 BEGIN
     -- Encripta el password usando SHA-256
-    SET @password_encriptado = SHA2(password_original, 256);
-    SELECT @password_encriptado AS password_SHA_256; 
-END
+    SET p_password_encriptado = SHA2(p_password_original, 256);
+END;
