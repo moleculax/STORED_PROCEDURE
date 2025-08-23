@@ -47,7 +47,17 @@ BEGIN
 
     -- Obtener el ID autogenerado
     SET v_user_id = LAST_INSERT_ID();
-
+-- Asignar permisos básicos según rol
+    IF p_roles = 'admin' THEN
+        SET v_permission = 'ADMIN_PANEL';
+       SET @AVATAR = 'roleAdmin.png';
+    ELSEIF p_roles = 'user' THEN  
+        SET v_permission = 'EDIT_PROFILE';
+        SET @AVATAR = 'roleUser.png';
+    ELSE
+        SET v_permission = 'VIEW_OWN_CONTENT';
+        SET @AVATAR = 'roleOtros.png';
+    END IF;
     -- Insertar en la tabla profiles
     INSERT INTO profiles (
 						user_id
@@ -63,21 +73,14 @@ BEGIN
                             , p_bio
                             , p_location
                             , p_interests
-                            , p_avatar_url
+                            , @AVATAR -- p_avatar_url
                             , p_instagram
                             , p_linkedin
                             , p_facebook
                             , p_twitter
 							);
 
-    -- Asignar permisos básicos según rol
-    IF p_roles = 'admin' THEN
-        SET v_permission = 'ADMIN_PANEL';
-    ELSEIF p_roles = 'user' THEN  
-        SET v_permission = 'EDIT_PROFILE';
-    ELSE
-        SET v_permission = 'VIEW_OWN_CONTENT';
-    END IF;
+
 
     -- Insertar permisos
     INSERT INTO user_permissions(user_id
